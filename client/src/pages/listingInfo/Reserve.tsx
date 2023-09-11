@@ -101,7 +101,7 @@ const Reserve = ({ item }: ReserveProps) => {
       }
 
       //create reservation
-      const res = await privateRequest.post(`/api/v1/reservations`, {
+      await privateRequest.post(`/api/v1/reservations`, {
         totalPrice: totalPrice,
         guests: guestsCount,
         listing: item?._id,
