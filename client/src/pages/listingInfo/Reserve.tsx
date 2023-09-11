@@ -9,7 +9,7 @@ import { useCurrentUser } from "../../hooks/useCurrentUser";
 import Calendar from "../../components/Calendar";
 import { useModal } from "../../hooks/useModal";
 import AuthModal from "../../components/modals/AuthModal";
-import { differenceInBusinessDays, differenceInCalendarDays } from "date-fns";
+import {  differenceInCalendarDays } from "date-fns";
 
 type ReserveProps = {
   item: IListing | undefined;
