@@ -9,7 +9,7 @@ const Search = () => {
 
   return (
     <>
-    <div className="flex border-md   cursor-pointer border-light gap-2 items-center w-full rounded-lg p-2 md:max-w-lg" onClick={() => showModal('search')}>
+    <div className="flex border-md h-[10vh]   cursor-pointer border-light gap-2 items-center w-full rounded-lg p-2 md:max-w-lg" onClick={() => showModal('search')}>
       <i className="md:hidden">
         <AiOutlineSearch fontSize={20} />
       </i>

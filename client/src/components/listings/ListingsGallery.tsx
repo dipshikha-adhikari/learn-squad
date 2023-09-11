@@ -61,7 +61,6 @@ const ListingsGallery = () => {
     }
   });
 
-  console.log(listings)
   if (isLoading)
     return (
       <div className="grid py-6 gap-10 h-[60vh] md:h-[65vh] overflow-hidden sm:grid-cols-2 md:grid-cols-3">

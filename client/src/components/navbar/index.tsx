@@ -11,8 +11,8 @@ const Navbar = () => {
   const { showModal, isModalOpen, handleCancel, modalType } = useModal();
 
   return (
-    <div className=" z-50 fixed left-0 top-0 w-full h-[12vh] bg-white  ">
-      <div className="max-w-[1500px] mx-auto p-4 flex items-center justify-between  h-full  relative w-full  ">
+    <div className=" z-50 fixed left-0 top-0 w-full  bg-white  ">
+      <div className="max-w-[1500px] h-[12vh] mx-auto p-4 sm:px-8 flex items-center justify-between    relative w-full  ">
         <Link to="/" className="text-primary-dark text-xl hidden md:block ">
           <img src={Logo} alt="logo" width={40} />
         </Link>

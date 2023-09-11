@@ -7,7 +7,7 @@ const CategoryBar = () => {
 const category = useStore(state =>state.query.category)
 
   return (
-    <div className="fixed pb-1 left-0 top-[12vh]  xs:h-[14vh] bg-white z-40 w-full">
+    <div className="fixed pb-1 left-0 top-[12vh]  xs:h-[12vh] bg-white z-40 w-full">
       <Layout>
         {" "}
         <div className="flex  gap-2 xs:gap-10  category_bar lg:justify-center   w-full  overflow-x-scroll ">

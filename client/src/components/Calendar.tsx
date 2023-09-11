@@ -42,7 +42,6 @@ item !== undefined &&  item.reservations.length !== 0 &&  item.reservations.map(
       dates = [...dates, ...range];
      }
       });
-      console.log(dates)
       setDisabled(dates);
     };
     disableDates();

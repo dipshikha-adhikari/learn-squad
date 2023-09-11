@@ -30,10 +30,8 @@ const parsedToken = token ? JSON.parse(token) : null;
       const currentTimestamp = Math.floor(Date.now() / 1000); // Get current timestamp in seconds
 
       if (decodedToken.exp < currentTimestamp) {
-        console.log("Token has expired");
         logOut()
       } else {
-        console.log("Token is still valid");
         setAuthToken(parsedToken);
         login(parsedToken)
       }

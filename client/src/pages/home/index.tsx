@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <>
       <CategoryBar />
-      <div className="pt-[15vh] ">
+      <div className="pt-[12vh] ">
        <ListingsGallery/>
       </div>
     </>

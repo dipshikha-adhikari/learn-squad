@@ -108,7 +108,6 @@ const Reserve = ({ item }: ReserveProps) => {
         startDate: date.startDate,
         endDate: date.endDate,
       });
-      console.log(res);
       setIsLoading(false);
       toast.success("Successfully reserved");
       navigate("/reservations");

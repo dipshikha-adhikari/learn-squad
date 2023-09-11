@@ -23,7 +23,6 @@ const MapComponent = ({ setMarkerPosition, setQuery, modalType }: any) => {
     setTimeout(() => {
       map.invalidateSize();
     }, 250);
-    console.log("f");
   }, [map]);
 
   const handleMapClick = async (e: any) => {
