@@ -13,9 +13,7 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
-#root{
-  text-align:center;
-}
+
 html {
   box-sizing: border-box;
 

@@ -23,7 +23,7 @@ function App() {
         <Layout>
           <Navbar />
         </Layout>
-        <div className={  ` top-[12vh] pb-[12vh] md:pb-10 relative   overflow-y-scroll`}>
+        <div className={  ` top-[12vh]  pb-[12vh] md:pb-10 relative   overflow-y-scroll`}>
           <Layout>
             <Routes>
               <Route path="/" element={<Home  />} />

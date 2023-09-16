@@ -101,7 +101,7 @@ const ListingsGallery = () => {
           </h2>{" "}
         </>
       ) : (
-        <div className=" pt-10 text-xl text-center ">No results found! 😐</div>
+        <div className=" py-10 text-xl text-center ">No results found! 😐</div>
       )}
        {isModalOpen && modalType === 'login' && <AuthModal props={{isModalOpen, handleCancel,modalType, showModal}}/>}
     </>
