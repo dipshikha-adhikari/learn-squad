@@ -73,7 +73,7 @@ const ListingsGallery = () => {
 
   return (
     <>
-      {listings !== undefined ? (
+      {listings !== undefined && listings.length !== 0 ? (
         <>
           {" "}
           <div className="grid relative    z-10 sm:grid-cols-2  gap-10 md:grid-cols-3 place-items-center">
