@@ -2,7 +2,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { IListing, Image } from "../../../types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface Item {
   item: IListing | undefined;
@@ -10,6 +10,28 @@ interface Item {
 
 export default function SimpleSlider({ item }: Item) {
   const [currentSlide, setCurrentSlide] = useState(1);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  let debouncedFn = debounced(handleResize, 400);
+
+  useEffect(() => {
+    window.addEventListener("resize", debouncedFn);
+
+    return () => window.removeEventListener("resize", debouncedFn);
+  }, []);
+
+  function debounced(fn: Function, delay: any) {
+    let timeout: any;
+    return function () {
+      if (timeout) clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        fn();
+      }, delay);
+    };
+  }
+
+  function handleResize() {
+    setScreenWidth(window.innerWidth);
+  }
 
   var settings = {
     infinite: true,
@@ -38,13 +60,22 @@ export default function SimpleSlider({ item }: Item) {
       >
         {item?.images.map((i: Image) => {
           return (
-            <img src={i.url} alt="image" className="h-80 object-cover" key={i.url} />
+            <img
+              src={i.url}
+              alt="image"
+              className="h-80 object-cover"
+              key={i.url}
+            />
           );
         })}
       </Slider>
-      <span className="">
-        {currentSlide}/{item?.images.length}
-      </span>
+      {item?.images.length !== undefined && (
+        <span className="">
+          {screenWidth > 600
+            ? currentSlide + 1 + '/' + item.images.length
+            : currentSlide + '/' + item.images.length}
+        </span>
+      )}
     </>
   );
 }

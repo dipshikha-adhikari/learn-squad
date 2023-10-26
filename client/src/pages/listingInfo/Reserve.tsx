@@ -32,6 +32,7 @@ const Reserve = ({ item }: ReserveProps) => {
   const [totalPrice, setTotalPrice] = useState<number>();
   const [isLoading, setIsLoading] = useState(false);
   const [reservation, setReservation] = useState<IReservation>();
+  const[night, setNights] = useState(0)
   const { user } = useCurrentUser();
   const { showModal, modalType, isModalOpen, handleCancel } = useModal();
   const navigate = useNavigate();
@@ -45,8 +46,12 @@ const Reserve = ({ item }: ReserveProps) => {
   useEffect(() => {
     if (item?.price !== undefined) {
       let timeDiff = differenceInCalendarDays(date.endDate, date.startDate);
-      if (timeDiff === 0) timeDiff = 1;
+      if (timeDiff === 0) {
+        timeDiff = 1
+      setNights(timeDiff)
+      }
       setTotalPrice(timeDiff * item?.price);
+      setNights(timeDiff)
     }
   }, [date]);
 
@@ -145,7 +150,7 @@ const Reserve = ({ item }: ReserveProps) => {
         </div>
       </div>
       <div className="flex justify-between items-center border-sm border-light p-2 h-fit mb-2 ">
-        <h2 className="text-xl">${totalPrice} per night</h2>
+      <h2 className="text-xl">${totalPrice} for {night} night</h2>
         <Button
           type="primary"
           danger
