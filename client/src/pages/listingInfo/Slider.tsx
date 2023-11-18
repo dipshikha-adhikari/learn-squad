@@ -10,28 +10,6 @@ interface Item {
 
 export default function SimpleSlider({ item }: Item) {
   const [currentSlide, setCurrentSlide] = useState(1);
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-  let debouncedFn = debounced(handleResize, 400);
-
-  useEffect(() => {
-    window.addEventListener("resize", debouncedFn);
-
-    return () => window.removeEventListener("resize", debouncedFn);
-  }, []);
-
-  function debounced(fn: Function, delay: any) {
-    let timeout: any;
-    return function () {
-      if (timeout) clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        fn();
-      }, delay);
-    };
-  }
-
-  function handleResize() {
-    setScreenWidth(window.innerWidth);
-  }
 
   var settings = {
     infinite: true,
@@ -54,6 +32,7 @@ export default function SimpleSlider({ item }: Item) {
       <Slider
         {...settings}
         className="overflow-hidden "
+        beforeChange={(e) => console.log(e)}
         afterChange={(cur) => {
           setCurrentSlide(cur + 1);
         }}
@@ -69,13 +48,7 @@ export default function SimpleSlider({ item }: Item) {
           );
         })}
       </Slider>
-      {item?.images.length !== undefined && (
-        <span className="">
-          {screenWidth > 600
-            ? currentSlide + 1 + '/' + item.images.length
-            : currentSlide + '/' + item.images.length}
-        </span>
-      )}
+      {currentSlide + "/" + item?.images.length}
     </>
   );
 }

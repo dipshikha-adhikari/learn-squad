@@ -17,12 +17,12 @@ type ReserveProps = {
 };
 
 const Reserve = ({ item }: ReserveProps) => {
+  const[warnBox, setWarnBox] = useState(false)
   const [date, setDate] = useState({
     startDate: new Date(),
     endDate: new Date(),
     key: "selection",
   });
-
   //  prevent adding reservation if the date is null or the date is not selected
   const [reservationDate, setReservationDate] = useState({
     startDate: null,
@@ -42,6 +42,7 @@ const Reserve = ({ item }: ReserveProps) => {
       checkIfAlreadyReserved(item, user);
     }
   }, [item, user]);
+ 
 
   useEffect(() => {
     if (item?.price !== undefined) {
@@ -123,6 +124,22 @@ const Reserve = ({ item }: ReserveProps) => {
     }
   };
 
+  // delete listing -- only for the owner 
+
+  const deleteListing  = async(id:string) => {
+    try {
+      toast.loading("Deleting..");
+      await privateRequest.delete(`/api/v1/listings/${id}`);
+      toast.success("Deleted");
+    } catch (err) {
+      console.log(err);
+      toast.error("Failed to delete");
+    } finally {
+      toast.dismiss();
+      setWarnBox(false)
+    }
+  }
+
   return (
     <div className="flex-1 grid gap-4">
       <Calendar
@@ -151,20 +168,42 @@ const Reserve = ({ item }: ReserveProps) => {
       </div>
       <div className="flex justify-between items-center border-sm border-light p-2 h-fit mb-2 ">
       <h2 className="text-xl">${totalPrice} for {night} night</h2>
-        <Button
+       
+       {item !== undefined && item?.userId === user?._id ? <Button
+          type="primary"
+          danger
+          onClick={() => setWarnBox(true)}
+        >
+          {" "}
+        Delete Listing{" "}
+        </Button> : <Button
           type="primary"
           danger
           onClick={handleReserve}
           loading={isLoading}
         >
-          {reservation ? "Delete" : "Reserve"}
-        </Button>
+          {  reservation ? "Delete" : "Reserve"}
+        </Button> } 
       </div>
       {(modalType === "login" || modalType === "register") && (
         <AuthModal
           props={{ isModalOpen, handleCancel, modalType, showModal }}
         />
       )}
+      {item !== undefined && warnBox && <div className="fixed p-10 border-sm bg-white left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 ">
+       <h2 className="py-4">Are you sure ?</h2>
+       <div className="flex gap-4">
+       <Button
+          type="primary"
+          danger
+          onClick={() => deleteListing(item?._id)}
+        >
+          {" "}
+        Yes{" "}
+        </Button>
+        <Button onClick={() => setWarnBox(false)}>No</Button>
+       </div>
+        </div>}
     </div>
   );
 };

@@ -15,7 +15,6 @@ import SearchResults from "./pages/searchResults";
 function App() {
   const queryClient = new QueryClient();
 
- 
   return (
     <>
       <QueryClientProvider client={queryClient}>

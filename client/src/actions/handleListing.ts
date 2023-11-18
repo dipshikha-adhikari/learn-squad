@@ -46,7 +46,6 @@ export const updateListing = async (listing: ICreateListing, resetListing: any, 
         });
 };
 
-
 // Delete function may be implemented later for cloudinary.
 
 // const deleteImages = async (newImages: any, listing: ICreateListing) => {
