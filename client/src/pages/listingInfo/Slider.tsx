@@ -2,7 +2,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { IListing, Image } from "../../../types";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 
 interface Item {
   item: IListing | undefined;
