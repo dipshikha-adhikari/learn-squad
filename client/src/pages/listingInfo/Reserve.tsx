@@ -203,7 +203,8 @@ const Reserve = ({ item }: ReserveProps) => {
         </Button>
         <Button onClick={() => setWarnBox(false)}>No</Button>
        </div>
-        </div>}
+        </div>
+        }
     </div>
   );
 };

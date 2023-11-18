@@ -32,7 +32,6 @@ const{user} = useCurrentUser()
     <div>
       <div className="">
         <SimpleSlider item={item} />
-
         <div className="md:flex">
           <div className="grid gap-2 h-fit flex-1">
             <h2 className="text-2xl font-semibold">{item?.title}</h2>
