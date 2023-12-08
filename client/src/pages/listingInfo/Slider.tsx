@@ -2,7 +2,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { IListing, Image } from "../../../types";
-import {  useState } from "react";
+import { useEffect, useState } from "react";
 
 interface Item {
   item: IListing | undefined;
@@ -10,6 +10,34 @@ interface Item {
 
 export default function SimpleSlider({ item }: Item) {
   const [currentSlide, setCurrentSlide] = useState(1);
+  const [isHidden, setIsHidden] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener("resize", () => debounce(handleResize));
+
+    return () =>
+      window.removeEventListener("resize", () => debounce(handleResize));
+  }, []);
+
+  function debounce(cb: any) {
+    let flag = false;
+    return () => {
+      if (flag) return;
+      flag = true;
+      setTimeout(() => {
+        cb();
+        flag = false;
+      }, 400);
+    };
+  }
+
+  function handleResize() {
+    if (window.innerWidth >= 600 && item?.images.length === 2) {
+      setIsHidden(true);
+    } else {
+      setIsHidden(false);
+    }
+  }
 
   var settings = {
     infinite: true,
@@ -32,7 +60,6 @@ export default function SimpleSlider({ item }: Item) {
       <Slider
         {...settings}
         className="overflow-hidden "
-        beforeChange={(e) => console.log(e)}
         afterChange={(cur) => {
           setCurrentSlide(cur + 1);
         }}
@@ -48,7 +75,9 @@ export default function SimpleSlider({ item }: Item) {
           );
         })}
       </Slider>
-      {currentSlide + "/" + item?.images.length}
+      <span className={`${isHidden && "hidden"}`}>
+        {currentSlide + "/" + item?.images.length}
+      </span>
     </>
   );
 }
