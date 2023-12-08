@@ -29,7 +29,7 @@ const MapComponent = ({ setMarkerPosition, setQuery, modalType }: any) => {
     const { lat, lng } = e.latlng;
     setMarkerPosition([lat, lng]);
     const location = await getLocation(lat, lng);
-    const exactLocation = [location?.state, location?.country].join();
+    const exactLocation = [ location?.country].join();
     if (modalType === "search") {
       setQuery((prev: any) => ({ ...prev, location: exactLocation }));
     } else {
